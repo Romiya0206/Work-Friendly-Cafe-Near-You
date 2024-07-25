@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+<!--Don't forget your import here-->
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+      <!-- This is where your WTForm will go -->
+      <form method="POST" action="{{ url_for('add_cafe') }}" >
+        {{ form.csrf_token }}
+        <p>
+          {{ form.cafe.label }}<br/>{{ form.cafe(size=80) }}
+          {% for err in form.cafe.errors %}
+            <span style="color:red">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.location.label }}<br/>{{ form.location(size=80) }}
+          {% for err in form.location.errors %}
+            <span style="color:red">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.open.label }}<br/>{{ form.open(size=80) }}
+          {% for err in form.open.errors %}
+            <span style="color:red">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.close.label }}<br/>{{ form.close(size=80) }}
+          {% for err in form.close.errors %}
+            <span style="color:red">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.hidden_tag() }} {{ form.coffee.label }}<br/>{{ form.coffee }}
+          {% for err in form.coffee.errors %}
+            <span style="color:red">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.hidden_tag() }} {{ form.wifi.label }}<br/>{{ form.wifi }}
+          {% for err in form.wifi.errors %}
+            <span style="color:red">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.hidden_tag() }} {{ form.power.label }}<br/>{{ form.power }}
+          {% for err in form.power.errors: %}
+            <span style="color:red">{{ err }}</span>
+          {% endfor %}
+        </p>
+        <br>
+        {{ form.submit }}
+      </form>
+
+	  <p class="space-above"><a href="{{ url_for('cafes')}}">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
